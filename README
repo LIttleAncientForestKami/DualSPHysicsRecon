@@ -1,0 +1,172 @@
+Co to jest SPHysics?
+Informatyka w służbie fizyki, czyli komputer jako maszyna obliczeniowa. Tu SPH jest skrótem od Smoothed Particle Hydrodynamics, czyli Hydrodynamiki Wygładzonych Cząsteczek. Całość ma służyć do dobrego modelowania płynów, inną niż dotychczasowe (trójkąty, poligony, itp.) metodą. Po teoretyczne podstawy i bardziej szczegółowe informacje odsyłam do bibliografii.  
+
+SPHysics był pisany w Fortranie.
+
+Końcowy wynik SPHysics to dane, jakie można zwizualizować np. narzędziem ParaView.
+
+Ograniczenia SPHysics.
+Problemem było to, że przy symulacjach płynno-stałych (dotyczących cieczy i ciał stałych) interakcje cząsteczek były nie do przeliczenia na pojedynczej maszynie. Przy problemach 3D ilość cząsteczek sięgała wielu (10^6 - 10^9) milionów. 
+
+W ten sposób rewelacyjne algorytmy i teorie (z punktu widzenia fizyki) leżące u podstaw SPH nie mogły zostać zamodelowane bez użycia cud-maszyn. Rozwiązania były dwa. Parallel SPHysics, wykorzystujący klastry maszyn (przez MPICH lub OpenMPI), oraz Dual SPHysics.
+
+
+Co to jest Dual SPHysics?
+Najnowsza (z końca maja 2011) wersja oprogramowania SPHysics, pomyślana na wieloprocesorowe maszyny. Ma na celu zrobienie użytku z nowoczesnych architektur celem zrównoleglenia i przyspieszenia obliczeń. Napisana jest w C++ z użyciem CUDA (dla GPU). Działa w trybach: CPU i GPU. Zawiera też narzędzia odpowiedzialne za poszczególne etapy obliczeń.
+
+Końcowy wynik Dual SPHysics to dane, jakie można zwizualizować np. narzędziem ParaView.
+
+
+CPU a GPU:
+Tryb GPU jest lepszy, nie ma co ukrywać. Jak bardzo - odsyłam do dokumentacji Dual SPHysics (sekcja 9: Test Cases, strona 31) dotyczącej odpalania przykładów i czasów jakie się uzyskało na każdym w różnych trybach. Różnice są wielokrotne (kilkudziesięciokrotne - sic!). 
+Tryb GPU jest też niestety jedynie dla posiadaczy szczęśliwych nVidii. Za dokumentacją:
+	To run DualSPHysics on GPU, there is no need to install compilers or new 
+	software, only an NVIDIA CUDA-enabled GPU card is needed and the last 
+	version of the driver must be installed.
+
+Dla chętnych lub upartych polecam emulator GPU na CPU: MCUDA. 
+
+
+Czym jest CUDA?
+Za stroną oficjalną: http://www.nvidia.pl/object/cuda_home_new_pl.html
+  i Wikipedią: http://en.wikipedia.org/wiki/CUDA
+  
+  CUDA to równoległa architektura rozwijana przez NVIDIA.
+  Jest wspierana przez niektóre ich karty, odsyłam po więcej szczegółów do podlinkowanych stron oraz załączonych PDFów.
+
+Wspierane karty (wg Wikipedii): http://en.wikipedia.org/wiki/CUDA#Supported_GPUs
+
+  
+Czym jest MCUDA?
+Wersją CUDA dla wielordzeniowych procesorów (ang.: "CUDA for Multicore CPUs"), napisaną przez Johna Strattona.
+Po więcej odsyłam do bibliografii.
+
+
+Etapy obliczeń:
+Wszystkie przykłady mają skrypty, które wystarczy wywołać, by przejść całość obliczeń za jednym zamachem. Tworząc własną symulację nie będzie już tak prosto. Etapy są następujące (nazwy od używanych narzędzi):
+
+1) GenCase - generacja parametrów przypadku, efekt końcowy to plik XML. Cholernie ważny, ma osobną dokumentację, załączoną.
+2) DualSphysics - właściwa część obliczeń, sedno biblioteki 
+3) BoundaryVTK - tworzy pliki wykorzystywane przy wizualizacji kształtów i geometrii granic
+4) PartVTK - tworzy pliki używane przy wizualizacji cząsteczek
+5) MeasureTool - z plików binarnych wyplutych przez DualSphysics przelicza metryki i porównuje efekty wyliczone z (np.) tymi już posiadanymi, z prawdziwego eksperymentu.
+
+Etapy dzielimy z grubsza na "pre-", "post-" i "processing". Każdy z nich jest opisany szczegółowo w swojej sekcji dokumentacji (sekcja 5: Processing, 6: Pre-processing, i 7: Post-processing).
+
+
+Struktura katalogów Dual SPHysics:
+- Sekcja 8: Running Dual SPHysics (strona 29 w dokumentacji DualSPHysics_v1.2) doskonale opisuje strukturę katalogów jaką dostaniemy po rozpakowaniu. Pięć minut lektury i wiadome jest wszystko. Dołączam zrzut ekranu z dokumentacji.
+
+Dodatkowo, w każdym katalogu jest plik txt z opisem zawartości. Szczerze polecam!
+
+readme.txt z katalogu HELP - nieodzownego przy tworzeniu własnej symulacji:
+	CaseTemplate.xml will help users to create their own testcases
+	This XML file contains all the options to create all the objects, define movements and describe parameters of execution
+
+	HELP_GenCase.out        includes the HELP about the execution parameters of the GenCase code
+	HELP_DualSPHysics.out   includes the HELP about the execution parameters of the DualSPHysics code
+	HELP_BoundaryVTK.out    includes the HELP about the execution parameters of the BoundaryVTK code
+	HELP_PartVTK.out        includes the HELP about the execution parameters of the PartVTK code
+	HELP_MeasureTool.out    includes the HELP about the execution parameters of the MeasureTool code
+
+	The folder XML_examples includes some XML examples of animations that can be seen at www.vimeo.com/dualsphysics:
+
+	- CaseFlap_Def.xml             shows an example of sinusoidal rotation
+	- CaseTurbine_Def.xml          shows an example of accelerated rotation and how to draw a cylinder
+	- CaseInitialVelocity_Def.xml  shows how to impose initial velocities to volumes of fluid
+	- CaseSloshing_Def.xml         shows how to describe a sloshing tank
+
+
+
+
+Sprzęt i system:
+cat /proc/cpuinfo | grep [...]
+	4-rdzeniowy procesor Intel i5, 
+	dane modelu: M480, 2,67 GHz
+
+arch
+	x86_64
+
+uname -a
+	2.6.32-34-generic #77-Ubuntu SMP Tue Sep 13 19:39:17 UTC 2011 x86_64 GNU/Linux
+	
+cat /proc/meminfo | grep Total	
+	MemTotal:        3917908 kB
+	SwapTotal:       1956856 kB
+
+Karta graficzna:
+lshw -C video
+	WARNING: you should run this program as super-user.
+	  *-display               
+		   description: VGA compatible controller
+		   product: M92 [Mobility Radeon HD 4500 Series]
+		   vendor: ATI Technologies Inc
+		   physical id: 0
+		   bus info: pci@0000:01:00.0
+		   version: 00
+		   width: 32 bits
+		   clock: 33MHz
+		   capabilities: bus_master cap_list rom
+		   configuration: driver=radeon latency=0
+		   resources: irq:34 memory:c0000000-dfffffff(prefetchable) ioport:2000(size=256) memory:f0300000-f030ffff memory:f0320000-f033ffff(prefetchable)
+
+
+
+Przykłady:
+Wedle dokumentacji Dual SPHysics (sekcja 9: Test Cases, strona 31) generacja przykładów mierzona w minutach różni się między wersjami biblioteki, architekturą użytej maszyny oraz przy i bez wspomagania procesora graficznego.
+
+Polecam lekturę zawartych w tej sekcji tabel - pozwala to na uniknięcie niemiłej niespodzianki jaka była moim udziałem. Przykład z pompą liczył się na mojej maszynie KILKANAŚCIE DNI non-stop (i tak o wiele lepiej niż mógł - w dokumentacji podają czas dłuższy niż - sic! - MIESIĄC). 
+
+Jeśli nie posiadacie dostępu do maszyny o lepszych osiągach niż moja mogącej długo działać bez przerwy (zatem nie lab, gdzie każdy może ją Wam wyłączyć), odradzam zlekceważenie dokumentacji i odpalanie na zasadzie "zobaczmy jak to działa".
+Chyba, że na przykładach 2D - są najszybsze: na Intelach i5 powinny zająć poniżej godziny obliczeń (na jeden).
+
+Niedowiarków odsyłam do plików poniżej.
+
+Zebrane czasy symulacji uzyskane na mojej maszynie
+- załącznik "Pump_Run.out" opisuje cały przebieg obliczeń dla przykładu z pompą
+- załącznik "DamBreak2D_Run.out" jest analogiczny dla dwuwymiarowej symulacji przerwania tamy
+
+
+Wstępna konfiguracja danych:
+Załączniki: 
+	CasePump_Def.xml 
+	CaseDamBreak2D_Def.xml 
+	exemplary.xml + komentarze
+
+
+Uruchamianie:
+	CasePump_linux64_GPU.bat - tylko karty graficzne nVidia
+	CasePump_linux64_CPU.bat - kilkanaście dni obliczeń 
+	- oba pliki uruchamia się bez parametrów z katalogu z przykładem
+
+
+
+
+Użyte programy:
+Załączam (na płytce) zipy odpowiednich wersji. Osoby zamierzające pracować na innym systemie / architekturze odsyłam do stron w bibliografii.
+
+- DualSPHysics_v1.2_linux_64bit.zip - esencja, biblioteka w C++ z przykładami i dokumentacją
+- ParaView-3.10.1-Linux-x86_64.tar.gz - narzędzie wizualizacyjne z mnóstwem opcji, filtrów, widoków itp.
+- mcuda1.0.1.tgz - emulator GPU (nie, że szczególnie był przydatny)
+
+
+Dokumentacja:
+- DualSPHysics_v1.2.000_GUIDE - w oparciu o ten dokument powstało to opracowanie.
+- GenCase_XML_GUIDE - niezbędnik dla przejścia przez pierwszą fazę symulacji (pre-processing). 
+- ParaView User's Guide v3.10 - ma to 400 stron, zatem należy łowić to, czego się potrzebuje (np. co to jest VTK i jak działa); szczęśliwie podręcznik użytkownika ParaView to mała część tej książki.
+- ParallelSPHysics_v2.0_GUIDE - dokumentacja dla wersji równoległej
+- MCUDA_Update_(11-4-2009).pdf - PDF dokumentujący MCUDA
+
+Wszystko w PDF, załączone na płytce. Po więcej odsyłam do bibliografii.
+
+
+Bibliografia i źródła do dalszej lektury:
+	- SPHysics Wiki: http://wiki.manchester.ac.uk/sphysics/index.php/SPHYSICS_Home_Page
+	- Dual SPHysics page: http://ephyslab.uvigo.es/index.php/eng/dual_sphysics/
+	- Dual SPHysics Guide [PDF]: http://dual.sphysics.org/frs/download.php/77/DualSPHysics_v1.2_GUIDE.pdf
+	- List of all publications, articles, books...: http://wiki.manchester.ac.uk/sphysics/index.php/SPHYSICS_Publications
+	- MCUDA: http://impact.crhc.illinois.edu/mcuda.php
+	- MCUDA's author's email: stratton@illinois.edu
+	- GPU Computing on MCUDA: http://www.gpucomputing.net/?q=node/138	
+	- Paraview main page: http://www.paraview.org/paraview/resources/software.html
+	- płytki DVD z danymi, u pana Aldy
