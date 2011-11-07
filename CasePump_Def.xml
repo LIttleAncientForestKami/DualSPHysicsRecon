@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<case app="GenCase v0.88 (26-01-2011)" date="02-05-2011 13:15:50">
+    <casedef>
+        <constantsdef>
+            <lattice bound="1" fluid="1" />
+            <gravity x="0" y="0" z="-9.81" />
+            <cflnumber value="0.2" />
+            <hswl value="0" auto="true" />
+            <coefsound value="20" />
+            <coefficient value="0.866025" />
+            <gamma value="7" />
+            <rhop0 value="1000" />
+            <eps value="0.5" />
+        </constantsdef>
+        <mkconfig boundcount="240" fluidcount="10" />
+        <geometry>
+            <definition dp="0.004">
+                <pointmin x="-0.4" y="-0.6" z="-1.1" />
+                <pointmax x="0.3" y="0.3" z="0.0" />
+            </definition>
+            <commands>
+                <mainlist>
+                    <setshapemode>real | bound | dp</setshapemode>
+                    <setmkbound mk="0" />
+                    <drawfilevtk file="pump_fixed.vtk" />
+                    <setmkbound mk="2" />
+                    <drawfilevtk file="pump_moving.vtk" />
+                    <setmkfluid mk="1" />
+                    <fillbox x="0.14" y="-0.1" z="-0.39" mkbound="0">
+                        <modefill>void</modefill>
+                        <point x="-0.6" y="-0.39" z="-1.1" />
+                        <size x="0.9" y="0.68" z="0.82" />
+                    </fillbox>
+                    <shapeout file="" />
+                </mainlist>
+            </commands>
+        </geometry>
+        <motion>
+            <objreal ref="2">
+                <begin mov="1" start="0.5" finish="1000" />
+                <mvrotace id="1" duration="2" next="2">
+                    <ace ang="500" />
+                    <velini ang="90" />
+                    <axisp1 x="-0.0176" y="-0.29" z="-0.7275" />
+                    <axisp2 x="-0.0176" y="-0.49" z="-0.7275" />
+                </mvrotace>
+                <mvrotace id="2" duration="1000">
+                    <ace ang="0" />
+                    <axisp1 x="-0.0176" y="-0.29" z="-0.7275" />
+                    <axisp2 x="-0.0176" y="-0.49" z="-0.7275" />
+                </mvrotace>
+            </objreal>
+        </motion>
+    </casedef>
+    <execution>
+        <parameters>
+            <parameter key="StepAlgorithm" value="2" comment="Step Algorithm 1:Verlet, 2:Symplectic (def=1)" />
+            <parameter key="VerletSteps" value="40" comment="Verlet only: Number of steps to apply Eulerian equations (def=40)" />
+            <parameter key="Kernel" value="2" comment="Interaction Kernel 1:Cubic Spline, 2:Wendland (def=1)" />
+            <parameter key="ViscoTreatment" value="1" comment="Viscosity Formulation 1:Artificial, 2:Laminar (def=1)" />
+            <parameter key="Visco" value="0.1" comment="Viscosity value" />
+            <parameter key="ShepardSteps" value="0" comment="Number of steps to apply Shepard density filter, 0=non applied (def=0)" />
+            <parameter key="DBCSteps" value="1" comment="Number of steps to update the density of the boundaries (Hughes and Graham correction), with 1 no correction (def=1)" />
+            <parameter key="DtIni" value="0.0001" comment="Initial time step" />
+            <parameter key="DtMin" value="0.00001" comment="Minimum time step (def=0.00001)" />
+            <parameter key="TimeMax" value="6" comment="Time of simulation" />
+            <parameter key="TimeOut" value="0.06" comment="Time between output files" />
+            <parameter key="IncZ" value="0.1" comment="Increase of Z+" />
+            <parameter key="PartsOutMax" value="0.9" comment="Allowed percentage of fluid particles out the domain (def=1)" />
+        </parameters>
+    </execution>
+</case>

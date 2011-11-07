@@ -1,0 +1,246 @@
+
+
+ <DUALSPHYSICS>  Copyright (C) 2011 by Jose M. Dominguez, Dr. Alejandro 
+ Crespo, Prof. M. Gomez Gesteira, Anxo Barreiro, Dr. Benedict Rogers 
+
+ DualSPHysics code belongs to SPHysics project, www.sphysics.org,  
+ an international collaboration between University of Vigo (Spain), 
+ University of Manchester (UK) and Johns Hopkins University (USA) 
+
+ This file is part of DualSPHysics project. 
+
+ DualSPHysics is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version. 
+
+ DualSPHysics is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details. 
+
+ You should have received a copy of the GNU General Public License,
+ along with DualSPHysics. If not, see <http://www.gnu.org/licenses/>. 
+
+ CUDA Data-Parallel Primitives Library (CUDPP) is the proprietary
+ property of The Regents of the University of California ("The Regents")
+ and NVIDIA Corporation ("NVIDIA"). 
+
+
+DualSPHysics (11-05-2011) v0.62
+================================
+[Initialising JSphCpu v0.62  25-10-2011 20:46:15]
+Threads for parallel execution: 4
+**Case configuration is loaded
+Loading initial state of particles...
+**Initial state of particles is loaded
+**2D-Simulation parameters:
+CaseName="CaseDambreak2D"
+RunName="CaseDambreak2D"
+StepAlgorithm="Verlet"
+VerletSteps=40
+Kernel="Wendland"
+Viscosity="Artificial"
+Visco=0.300000
+ShepardSteps=0
+DBCSteps=10
+Np=31201
+Nbound=1201
+Nfixed=1201
+Nmoving=0
+Nfloat=0
+Dx=0.002000
+H=0.002449
+CteB=167050.296875
+Gamma=7.000000
+Rhop0=1000.000000
+Eps=0.500000
+Cs0=34.195793
+CFLnumber=0.200000
+DtIni=0.000100
+DtMin=0.000010
+MassFluid=0.004000
+MassBound=0.004000
+CteA2=75788.125000
+CubicCte.a1=0.000000
+CubicCte.aa=0.000000
+CubicCte.a24=0.000000
+CubicCte.c1=0.000000
+CubicCte.c2=0.000000
+CubicCte.d1=0.000000
+CubicCte.od_wdeltap=0.000000
+WendlandCte.awen=92833.406250
+WendlandCte.bwen=-189509088.000000
+TimeMax=2.000000
+TimePart=0.020000
+Gravity=(0.000000,0.000000,-9.810000)
+IncZ=0.500000
+PartOutMax=30000
+RhopOut=True
+RhopOutMin=700.000000
+RhopOutMax=1300.000000
+RunMode="OpenMP threads:4, Dynamic, SSE:True"
+KerMode="KHdiv1Bg"
+
+**Initialising JDivideCpu
+Domain limits: (-0.0002,0.0998,-0.0002)-(1.6002,0.1002,0.6005)
+Dimensions: 1.600490 x 0.000490 x 0.600735
+Allocated memory in CPU: 8210912 (7.83 Mb)
+Part_0000
+
+[Initialising simulation  25-10-2011 20:46:15]
+PART       PartTime      TotalSteps    Steps    Time/Seg   Finish time   
+=========  ============  ============  =======  =========  ==============
+Part_0001      0.020008          1417     1417     938.46  25-10-11 21:17
+Part_0002      0.040001          2837     1420     969.53  25-10-11 21:18
+Part_0003      0.060000          4268     1431     962.62  25-10-11 21:18
+Part_0004      0.080005          5707     1439     965.39  25-10-11 21:18
+Part_0005      0.100007          7155     1448     962.31  25-10-11 21:18
+Part_0006      0.120008          8606     1451     957.40  25-10-11 21:18
+Part_0007      0.140013         10060     1454     954.35  25-10-11 21:18
+Part_0008      0.160008         11516     1456     952.23  25-10-11 21:18
+Part_0009      0.180002         12974     1458     950.46  25-10-11 21:18
+Part_0010      0.200001         14430     1456     947.09  25-10-11 21:18
+Part_0011      0.220005         15885     1455     945.15  25-10-11 21:18
+Part_0012      0.240001         17339     1454     944.69  25-10-11 21:18
+Part_0013      0.260007         18795     1456     945.62  25-10-11 21:18
+Part_0014      0.280011         20249     1454     948.47  25-10-11 21:18
+Part_0015      0.300008         21702     1453     967.94  25-10-11 21:18
+Part_0016      0.320012         23156     1454     961.62  25-10-11 21:18
+Part_0017      0.340000         24608     1452     958.61  25-10-11 21:18
+Part_0018      0.360006         26061     1453     964.12  25-10-11 21:18
+Part_0019      0.380008         27514     1453     960.10  25-10-11 21:18
+Part_0020      0.400004         28965     1451     943.91  25-10-11 21:18
+Part_0021      0.420012         30418     1453     965.59  25-10-11 21:18
+Part_0022      0.440009         31869     1451     969.93  25-10-11 21:18
+Part_0023      0.460009         33320     1451     972.58  25-10-11 21:18
+Part_0024      0.480009         34770     1450     985.58  25-10-11 21:18
+Part_0025      0.500003         36219     1449    1004.08  25-10-11 21:18
+Part_0026      0.520001         37668     1449     969.74  25-10-11 21:18
+Part_0027      0.540012         39205     1537    1106.53  25-10-11 21:18
+Part_0028      0.560012         40739     1534    1109.68  25-10-11 21:18
+Part_0029      0.580008         42294     1555    1032.23  25-10-11 21:18
+Part_0030      0.600002         43863     1569    1039.31  25-10-11 21:18
+Part_0031      0.620003         45437     1574    1047.60  25-10-11 21:18
+Part_0032      0.640005         47009     1572    1123.06  25-10-11 21:18
+Part_0033      0.660003         48614     1605    1052.64  25-10-11 21:19
+Part_0034      0.680009         50204     1590    1045.92  25-10-11 21:19
+Part_0035      0.700011         51859     1655    1088.31  25-10-11 21:19
+Part_0036      0.720009         53545     1686    1112.76  25-10-11 21:19
+Part_0037      0.740001         55361     1816    1198.60  25-10-11 21:19
+Particles out: 11  (total: 11)
+Part_0038      0.760007         57075     1714    1125.74  25-10-11 21:19
+Part_0039      0.780009         58753     1678    1103.34  25-10-11 21:19
+Part_0040      0.800008         60520     1767    1167.25  25-10-11 21:19
+Particles out: 9  (total: 20)
+Part_0041      0.820005         62161     1641    1080.06  25-10-11 21:19
+Part_0042      0.840006         63807     1646    1089.39  25-10-11 21:19
+Part_0043      0.860009         65561     1754    1161.67  25-10-11 21:20
+Part_0044      0.880001         67248     1687    1114.20  25-10-11 21:20
+Part_0045      0.900002         68960     1712    1152.03  25-10-11 21:20
+Part_0046      0.920007         70699     1739    1152.45  25-10-11 21:20
+Part_0047      0.940005         72506     1807    1205.37  25-10-11 21:20
+Particles out: 7  (total: 27)
+Part_0048      0.960009         74372     1866    1254.01  25-10-11 21:20
+Part_0049      0.980008         76185     1813    1213.35  25-10-11 21:20
+Particles out: 6  (total: 33)
+Part_0050      1.000005         77990     1805    1243.91  25-10-11 21:20
+Particles out: 4  (total: 37)
+Part_0051      1.020001         79802     1812    1212.60  25-10-11 21:21
+Particles out: 1  (total: 38)
+Part_0052      1.040009         81657     1855    1239.28  25-10-11 21:21
+Particles out: 1  (total: 39)
+Part_0053      1.060005         83426     1769    1208.83  25-10-11 21:21
+Part_0054      1.080003         85182     1756    1191.99  25-10-11 21:21
+Particles out: 2  (total: 41)
+Part_0055      1.100008         86910     1728    1183.21  25-10-11 21:21
+Part_0056      1.120006         88650     1740    1185.99  25-10-11 21:21
+Part_0057      1.140002         90454     1804    1213.66  25-10-11 21:21
+Part_0058      1.160006         92284     1830    1230.89  25-10-11 21:21
+Particles out: 4  (total: 45)
+Part_0059      1.180009         94045     1761    1186.43  25-10-11 21:21
+Particles out: 1  (total: 46)
+Part_0060      1.200006         95860     1815    1231.24  25-10-11 21:21
+Part_0061      1.220009         97681     1821    1228.61  25-10-11 21:21
+Particles out: 5  (total: 51)
+Part_0062      1.240004         99408     1727    1169.26  25-10-11 21:21
+Part_0063      1.260009        101247     1839    1262.89  25-10-11 21:22
+Part_0064      1.280010        103068     1821    1227.16  25-10-11 21:22
+Particles out: 12  (total: 63)
+Part_0065      1.300009        104790     1722    1177.71  25-10-11 21:22
+Part_0066      1.320008        106513     1723    1183.78  25-10-11 21:22
+Part_0067      1.340000        108310     1797    1223.92  25-10-11 21:22
+Particles out: 2  (total: 65)
+Part_0068      1.360003        110124     1814    1299.23  25-10-11 21:22
+Particles out: 1  (total: 66)
+Part_0069      1.380008        112003     1879    1319.69  25-10-11 21:22
+Particles out: 10  (total: 76)
+Part_0070      1.400005        113740     1737    1195.55  25-10-11 21:22
+Part_0071      1.420003        115483     1743    1197.74  25-10-11 21:22
+Part_0072      1.440008        117280     1797    1249.07  25-10-11 21:22
+Part_0073      1.460005        119106     1826    1296.41  25-10-11 21:22
+Part_0074      1.480005        120902     1796    1228.52  25-10-11 21:22
+Particles out: 1  (total: 77)
+Part_0075      1.500002        122708     1806    1232.84  25-10-11 21:22
+Particles out: 9  (total: 86)
+Part_0076      1.520005        124423     1715    1178.73  25-10-11 21:22
+Particles out: 4  (total: 90)
+Part_0077      1.540009        126121     1698    1175.63  25-10-11 21:23
+Part_0078      1.560009        127882     1761    1204.38  25-10-11 21:23
+Particles out: 3  (total: 93)
+Part_0079      1.580007        129681     1799    1231.96  25-10-11 21:23
+Part_0080      1.600012        131417     1736    1178.48  25-10-11 21:23
+Part_0081      1.620008        133196     1779    1208.54  25-10-11 21:23
+Part_0082      1.640004        134899     1703    1157.35  25-10-11 21:23
+Part_0083      1.660004        136756     1857    1261.99  25-10-11 21:23
+Part_0084      1.680006        138586     1830    1244.13  25-10-11 21:23
+Particles out: 1  (total: 94)
+Part_0085      1.700008        140360     1774    1205.59  25-10-11 21:23
+Part_0086      1.720006        142132     1772    1205.74  25-10-11 21:23
+Part_0087      1.740012        143948     1816    1235.65  25-10-11 21:23
+Particles out: 9  (total: 103)
+Part_0088      1.760007        145754     1806    1229.30  25-10-11 21:23
+Particles out: 1  (total: 104)
+Part_0089      1.780008        147504     1750    1191.19  25-10-11 21:23
+Particles out: 4  (total: 108)
+Part_0090      1.800007        149166     1662    1131.09  25-10-11 21:23
+Part_0091      1.820004        150872     1706    1161.49  25-10-11 21:23
+Part_0092      1.840007        152579     1707    1163.91  25-10-11 21:23
+Part_0093      1.860008        154278     1699    1155.17  25-10-11 21:23
+Part_0094      1.880007        156099     1821    1240.15  25-10-11 21:23
+Particles out: 3  (total: 111)
+Part_0095      1.900011        157794     1695    1152.48  25-10-11 21:23
+Particles out: 4  (total: 115)
+Part_0096      1.920011        159431     1637    1113.73  25-10-11 21:23
+Part_0097      1.940000        161058     1627    1107.63  25-10-11 21:23
+Part_0098      1.960010        162683     1625    1105.19  25-10-11 21:23
+Part_0099      1.980009        164354     1671    1137.09  25-10-11 21:23
+Part_0100      2.000005        166144     1790    1218.56  25-10-11 21:23
+Particles out: 3  (total: 118)
+
+[Simulation finished  25-10-2011 21:23:38]
+DTs adjusted to DtMin............: 19293
+Excluded particles...............: 118
+Excluded particles due to RhopOut: 118
+Total Runtime....................: 2243.226807 seg.
+Simulation Runtime...............: 2243.183594 seg.
+Time per second of simulation....: 1121.589233 seg.
+Steps per second.................: 74.066162
+Steps of simulation..............: 166144
+PART files.......................: 101
+
+[CPU Timers]
+NL-DivideBound...................: 0.000532 seg.
+NL-SortDataBound.................: 0.000059 seg.
+NL-DivideFluid...................: 113.859291 seg.
+NL-SortDataFluid.................: 94.124275 seg.
+CF-PreInteraction................: 299.528259 seg.
+CF-Interaction...................: 1632.993408 seg.
+CF-Shepard.......................: 0.000000 seg.
+SU-CalcDt........................: 43.021748 seg.
+SU-ComputeStep...................: 58.968735 seg.
+SU-Floating......................: 0.000000 seg.
+SU-Motion........................: 0.000000 seg.
+SU-SavePart......................: 0.180358 seg.
+SU-SaveRhop......................: 0.000000 seg.
+ 

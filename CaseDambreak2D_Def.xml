@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<case app="GenCase v1.0:004 (03-05-2011)" date="05-05-2011 19:38:10">
+    <casedef>
+        <constantsdef>
+            <lattice bound="1" fluid="1" />
+            <gravity x="0" y="0" z="-9.81" />
+            <cflnumber value="0.2" />
+            <hswl value="0" auto="true" />
+            <coefsound value="20" />
+            <coefficient value="0.866025" />
+            <gamma value="7" />
+            <rhop0 value="1000" />
+            <eps value="0.5" />
+        </constantsdef>
+        <mkconfig boundcount="240" fluidcount="10" />
+        <geometry>
+            <definition dp="0.002">
+                <pointmin x="-0.05" y="0.1" z="-0.05" />
+                <pointmax x="2" y="0.1" z="1" />
+            </definition>
+            <commands>
+                <mainlist>
+                    <setshapemode>dp | bound</setshapemode>
+                    <setdrawmode mode="full" />
+                    <setmkfluid mk="0" />
+                    <drawbox>
+                        <boxfill>solid</boxfill>
+                        <point x="0" y="0" z="0" />
+                        <size x="0.4" y="0.67" z="0.3" />
+                    </drawbox>
+                    <setmkbound mk="0" />
+                    <drawbox>
+                        <boxfill>bottom | left | right | front | back</boxfill>
+                        <point x="0" y="0" z="0" />
+                        <size x="1.6" y="0.67" z="0.4" />
+                    </drawbox>
+                    <shapeout file="" />
+                </mainlist>
+            </commands>
+        </geometry>
+    </casedef>
+    <execution>
+        <parameters>
+            <parameter key="StepAlgorithm" value="1" comment="Step Algorithm 1:Verlet, 2:Symplectic (def=1)" />
+            <parameter key="VerletSteps" value="40" comment="Verlet only: Number of steps to apply Eulerian equations (def=40)" />
+            <parameter key="Kernel" value="2" comment="Interaction Kernel 1:Cubic Spline, 2:Wendland (def=1)" />
+            <parameter key="ViscoTreatment" value="1" comment="Viscosity Formulation 1:Artificial, 2:Laminar (def=1)" />
+            <parameter key="Visco" value="0.3" comment="Viscosity value" />
+            <parameter key="ShepardSteps" value="0" comment="Number of steps to apply Shepard density filter, 0=non applied (def=0)" />
+            <parameter key="DBCSteps" value="10" comment="Number of steps to update the density of the boundaries (Hughes and Graham correction), with 1 no correction (def=1)" />
+            <parameter key="DtIni" value="0.0001" comment="Initial time step" />
+            <parameter key="DtMin" value="0.00001" comment="Minimum time step (def=0.00001)" />
+            <parameter key="TimeMax" value="2.0" comment="Time of simulation" />
+            <parameter key="TimeOut" value="0.02" comment="Time between output files" />
+            <parameter key="IncZ" value="0.5" comment="Increase of Z+" />
+            <parameter key="PartsOutMax" value="1" comment="Allowed percentage of fluid particles out the domain (def=1)" />
+        </parameters>
+    </execution>
+</case>
